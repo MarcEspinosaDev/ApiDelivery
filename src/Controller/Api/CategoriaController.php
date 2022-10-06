@@ -68,8 +68,6 @@ class CategoriaController extends AbstractFOSRestController
         return $category;
     }
 
-    // !!!!!!!!! no va el UPDATE ni el DELETE !!!!!!!!!!!
-
     //UPDATE (Patch)
     /**
      * @Rest\Patch(path="/{id}")
@@ -78,22 +76,25 @@ class CategoriaController extends AbstractFOSRestController
 
     public function updateCategoria(Request $request){
         $idCategory = $request->get('id');
-        if(!$this->categoriaRepository->find($idCategory)){
+        $category = $this->categoriaRepository->find($idCategory);
+        if(!$category){
             return new JsonResponse('Not found', Response::HTTP_NOT_FOUND);
         }
-        $form = $this->createForm(CategoriaType::class,$idCategory,['method'=>$request->getMethod()]);
+        $form = $this->createForm(CategoriaType::class,$category,['method'=>$request->getMethod()]);
         $form->handleRequest($request);
         //comprobar la validez del form
         if(!$form->isSubmitted() || !$form->isValid()){
             return new JsonResponse('Bad Data', 400);
         }
-        $this->categoriaRepository->add($idCategory, true);
-        return $idCategory;
+        $this->categoriaRepository->add($category, true);
+        return $category;
     }
+
+    // !!!!!!!!! no va el DELETE !!!!!!!!!!!
 
     //DELETE
     /**
-     * @Rest\Delete(path="/")
+     * @Rest\Delete(path="/{id}")
      */
     public function deleteCategorias(Request $request){
         $categoriaId = $request->get('id');
