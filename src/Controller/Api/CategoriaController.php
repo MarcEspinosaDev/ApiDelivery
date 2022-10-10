@@ -16,14 +16,13 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CategoriaController extends AbstractFOSRestController
 {
-    //CRUD
-    // Create, Update, Delete, Read
-
     private $categoriaRepository;
 
     public function __construct(CategoriaRepository $repo){
         $this->categoriaRepository = $repo;
     }
+    //CRUD
+    // Create, Update, Delete, Read
 
     //CREATE
     /**
@@ -89,8 +88,6 @@ class CategoriaController extends AbstractFOSRestController
         $this->categoriaRepository->add($category, true);
         return $category;
     }
-
-    // !!!!!!!!! no va el DELETE !!!!!!!!!!!
 
     //DELETE
     /**

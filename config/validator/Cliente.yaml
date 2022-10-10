@@ -1,0 +1,14 @@
+App\Entity\Cliente:
+  properties:
+    nombre:
+      - NotBlank:
+          message: 'nombre cannot be null or empty'
+    apellidos:
+      - NotBlank:
+          message: 'apellidos cannot be null or empty'
+    telefono:
+      - NotBlank:
+          message: 'telefono cannot be null or empty'
+      - Length:
+          max: 9
+          maxMessage: 'telefono cannot be more than 9 numbers'
