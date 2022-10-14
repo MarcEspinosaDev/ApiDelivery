@@ -1,0 +1,11 @@
+App\Entity\Direccion:
+  properties:
+    calle:
+      - NotBlank:
+          message: 'calle cannot be null or empty'
+    numero:
+      - NotBlank:
+          message: 'numero cannot be null or empty'
+    codPostal:
+      - NotBlank:
+          message: 'codPostal cannot be null or empty'
